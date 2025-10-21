@@ -1,0 +1,45 @@
+{
+  "name": "react-typescript-rsbuild-eslint-prettier-express-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run clean && npm run build:web && npm run build:server",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:web": "rsbuild build",
+    "clean": "rimraf dist",
+    "dev": "concurrently -k -n client,server \"rsbuild dev --open\" \"npm run server\"",
+    "client:dev": "rsbuild dev --open",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "preview": "rsbuild preview",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node dist/server/index.js",
+    "server": "cross-env PORT=4000 tsx watch --tsconfig tsconfig.server.json server/index.ts"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "@rsbuild/core": "^1.5.14",
+    "@rsbuild/plugin-react": "^1.4.1",
+    "@types/express": "^5.0.3",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.43.0"
+  }
+}
